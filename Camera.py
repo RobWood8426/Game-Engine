@@ -18,8 +18,7 @@ class Camera(object):
         self.lineheight = self.height/self.mapSize
         self.linewidth = self.lineheight
 
-        self.playerX = self.map.player.playerX
-        self.playerY = self.map.player.playerY
+
 
         self.displaySize = [self.width,self.height]
         self.white = [255, 255, 255]
@@ -29,12 +28,18 @@ class Camera(object):
         self.screen = pygame.display.set_mode(self.displaySize, pygame.FULLSCREEN)
 
     def updateScreen(self):
+        self.screen.fill((0,0,0))
+        self.playerX = self.map.player.playerX
+        self.playerY = self.map.player.playerY
 
         for y in range(10):
             for x in range(10):
                 #DrawMap
-                if self.gamemap[y][x] == 1:
+                if (self.gamemap[y][x] == 1):
                     pygame.draw.line(self.screen,self.white,(self.sideSpace+x*self.linewidth,(0.5+y)*self.lineheight),(self.sideSpace+(x+1)*self.linewidth,(0.5+y)*self.lineheight),self.lineheight)
                 if (x == self.playerX) & (y == self.playerY):
                     pygame.draw.circle(self.screen,self.blue,(self.linewidth/2 + self.sideSpace +x*self.linewidth, self.linewidth/2+y*self.linewidth),self.linewidth/4,0)
+        self.map.player.listen()
         pygame.display.update()
+
+

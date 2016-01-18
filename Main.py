@@ -1,13 +1,9 @@
-import Camera, sys
-
+import Camera
+running = True
 paused = False
 Game = Camera.Camera()
-count = 0
 
-while True:
+while running:
     while not paused:
-        count +=1
         Game.updateScreen()
-        if count == 1000:
 
-            sys.exit(0)
