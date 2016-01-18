@@ -1,8 +1,9 @@
 import random
 
 class Mapping(object):
-    def __init__(self):
-
-        self.gamemap = [[random.randint(0,1) for i in range(16)] for j in range(10)]
+    def __init__(self,mapSize,mapDensity):
+        self.mapSize = mapSize
+        self.mapDensity = mapDensity
+        self.gamemap = [[round(random.uniform(0,self.mapDensity)) for i in range(self.mapSize)] for j in range(self.mapSize)]
 
 
