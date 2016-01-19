@@ -6,6 +6,7 @@ class PlayerOnMap(object):
     def __init__(self,map,mapsize):
         pygame.init()
         self.posFound = False
+
         while not self.posFound:
             x = random.randint(0,mapsize-1)
             y = random.randint(0,mapsize-1)
@@ -15,8 +16,9 @@ class PlayerOnMap(object):
                 self.posFound = True
                 self.playerX = x
                 self.playerY = y
-            self.pressedKeys = []
-            self.remove = ''
+
+        self.pressedKeys = []
+        self.remove = ''
 
     def listen(self):
         for event in pygame.event.get():
@@ -44,9 +46,9 @@ class PlayerOnMap(object):
                 if (event.key == pygame.K_LEFT):
                     self.remove = 'Left'
 
-            if (self.remove <> '') and (len(self.pressedKeys) > 0):
-                self.pressedKeys.remove(self.remove)
-                self.remove = ''
+                if (self.remove <> '') and (len(self.pressedKeys) > 0):
+                    self.pressedKeys.remove(self.remove)
+                    self.remove = ''
 
 
 
