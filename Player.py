@@ -20,12 +20,12 @@ class PlayerOnMap(object):
                 if (event.key == pygame.K_ESCAPE):
                     sys.exit(0)
                 elif (event.key == pygame.K_DOWN):
-                    self.playerY =+1
+                    self.playerY = self.playerY + 1
                 elif (event.key == pygame.K_UP):
-                    self.playerY =-1
+                    self.playerY = self.playerY - 1
                 elif (event.key == pygame.K_RIGHT):
-                    self.playerX =+1
+                    self.playerX = self.playerX + 1
                 elif (event.key == pygame.K_LEFT):
-                    self.playerX =-1
+                    self.playerX = self.playerX - 1
 
 
