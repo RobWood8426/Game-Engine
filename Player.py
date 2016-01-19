@@ -1,16 +1,18 @@
 import pygame
 import sys
+import random
 
 class PlayerOnMap(object):
-    def __init__(self,map):
+    def __init__(self,map,mapsize):
         pygame.init()
         self.posFound = False
-        for y in range(10):
-            for x in range(10):
-                if (not self.posFound) & (map[y][x] == 0) :
-                    self.posFound = True
-                    self.playerX = x
-                    self.playerY = y
+        while not self.posFound:
+            x = random.randint(0,mapsize-1)
+            y = random.randint(0,mapsize-1)
+            if (map[y][x] == 0) :
+                self.posFound = True
+                self.playerX = x
+                self.playerY = y
 
     def listen(self):
         for event in pygame.event.get():
