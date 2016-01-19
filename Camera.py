@@ -29,16 +29,15 @@ class Camera(object):
 
     def updateScreen(self):
         self.screen.fill((0,0,0))
-        self.playerX = self.map.player.playerX
-        self.playerY = self.map.player.playerY
+        self.playerX = self.map.player.playerX*self.linewidth+self.linewidth/2+self.sideSpace
+        self.playerY = self.map.player.playerY*self.linewidth+self.linewidth/2
 
         for y in range(10):
             for x in range(10):
                 #DrawMap
                 if (self.gamemap[y][x] == 1):
-                    pygame.draw.line(self.screen,self.white,(self.sideSpace+x*self.linewidth,(0.5+y)*self.lineheight),(self.sideSpace+(x+1)*self.linewidth,(0.5+y)*self.lineheight),self.lineheight)
-                if (x == self.playerX) & (y == self.playerY):
-                    pygame.draw.circle(self.screen,self.blue,(self.linewidth/2 + self.sideSpace +x*self.linewidth, self.linewidth/2+y*self.linewidth),self.linewidth/4,0)
+                    pygame.draw.line(self.screen,self.white,(int(self.sideSpace+x*self.linewidth),int((0.5+y)*self.lineheight)),(int(self.sideSpace+(x+1)*self.linewidth),int((0.5+y)*self.lineheight)),self.lineheight)
+                pygame.draw.circle(self.screen,self.blue,(int(self.playerX),int(self.playerY)),self.linewidth/4,0)
         self.map.player.listen()
         pygame.display.update()
 
