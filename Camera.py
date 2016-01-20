@@ -6,6 +6,9 @@ class Camera(object):
     def __init__(self):
         pygame.init()
 
+        pygame.mouse.set_visible(0)
+        pygame.event.set_grab(1)
+
         self.mapSize = 10
         self.mapDensity = 1
         self.map = Map.Mapping(self.mapSize,self.mapDensity)
@@ -18,6 +21,7 @@ class Camera(object):
         self.lineheight = self.height/self.mapSize
         self.linewidth = self.lineheight
 
+        self.font = pygame.font.SysFont("monospace", 15)
 
 
         self.displaySize = [self.width,self.height]
@@ -29,6 +33,17 @@ class Camera(object):
 
     def updateScreen(self):
         self.screen.fill((0,0,0))
+
+
+        self.label = self.font.render(str(self.map.player.direction), 1, (255,255,0))
+        self.screen.blit(self.label, (0, 0))
+
+
+
+
+
+
+
         self.playerX = self.map.player.playerX*self.linewidth+self.linewidth/2+self.sideSpace
         self.playerY = self.map.player.playerY*self.linewidth+self.linewidth/2
 
