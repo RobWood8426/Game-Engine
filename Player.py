@@ -6,12 +6,19 @@ import math
 class PlayerOnMap(object):
     def __init__(self,map,mapsize):
         pygame.init()
+
+        self.sin = 0
+        self.cos = 0
+        self.hyp = 0
+        self.directionX = 0
+        self.directionY = 0
         self.posFound = False
         self.basicX = 0
         self.basicY = 0
         self.angle = 0
         self.mouseX , self.mouseY = pygame.mouse.get_rel()
         self.direction = 0
+
 
         while not self.posFound:
             x = random.randint(0,mapsize-1)
@@ -70,18 +77,19 @@ class PlayerOnMap(object):
                 self.basicX = self.basicX - 0.05
 
         self.mouseX , self.mouseY = pygame.mouse.get_rel()
-        self.angle = math.atan2(self.mouseY,self.mouseX)*180/math.pi
+        self.hyp = math.sqrt((self.mouseX*self.mouseX+self.mouseY*self.mouseY))
 
-        if self.angle != 0 :
-            self.direction = self.direction + self.mouseX/5
+        if self.hyp != 0 :
+            self.sin = self.sin + self.mouseY/self.hyp
+            self.cos = self.cos + self.mouseX/self.hyp
 
 
-
-        self.playerY = self.playerY + math.cos(math.radians(self.direction)) * self.basicX - math.sin(math.radians(self.direction)) * self.basicY
-        self.playerX = self.playerX + math.sin(math.radians(self.direction)) * self.basicX - math.cos(math.radians(self.direction)) * self.basicY
+        self.playerY = self.playerY + self.cos * self.basicX - self.sin * self.basicY
+        self.playerX = self.playerX + self.sin * self.basicX - self.cos * self.basicY
 
         self.basicX = 0
         self.basicY = 0
+        self.hype = 0
 
 
         pygame.event.clear()
