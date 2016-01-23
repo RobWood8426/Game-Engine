@@ -35,8 +35,11 @@ class Camera(object):
         self.screen.fill((0,0,0))
 
 
-        self.label = self.font.render(str(self.map.player.direction), 1, (255,255,0))
+        self.label = self.font.render(str(self.map.player.directionX), 1, (255,255,0))
         self.screen.blit(self.label, (0, 0))
+
+        self.label = self.font.render(str(self.map.player.directionY), 1, (255,255,0))
+        self.screen.blit(self.label, (0, 20))
 
 
 
