@@ -6,12 +6,10 @@ import math
 class PlayerOnMap(object):
     def __init__(self,map,mapsize):
 
-        self.basicX = 0
-        self.basicY = 0
         self.posFound = False
         self.position = [0, 0, 0]
         self.direction = [1, 0, 0]
-        self.sensitivity = 0.5
+        self.sensitivity = 0.05
 
         while not self.posFound:
             x = random.randint(0,mapsize-1)
@@ -56,19 +54,6 @@ class PlayerOnMap(object):
                 if (self.remove != '') & (self.remove in self.pressedKeys):
                     self.pressedKeys.remove(self.remove)
                     self.remove = ''
-
-
-
-        for t in range(len(self.pressedKeys)):
-            if (self.pressedKeys[t] == 'Down'):
-                self.basicY = self.basicY + 0.05
-            elif (self.pressedKeys[t] == 'Up'):
-                self.basicY = self.basicY - 0.05
-            elif (self.pressedKeys[t] == 'Right'):
-                self.basicX = self.basicX + 0.05
-            elif (self.pressedKeys[t] == 'Left'):
-                self.basicX = self.basicX - 0.05
-
         motion = [-self.sensitivity*i for i in pygame.mouse.get_rel()]
         cos = math.cos(motion[0])
         sin = math.sin(motion[0])
@@ -79,12 +64,24 @@ class PlayerOnMap(object):
         self.direction[0] = x
         self.direction[2] = z
 
-        self.position[0] = self.position[0]+ self.basicX
 
-        self.position[2] = self.position[2]+ self.basicY
+        for t in range(len(self.pressedKeys)):
+            if (self.pressedKeys[t] == 'Down'):
+                self.position[0] -= 0.05*self.direction[0]
+                self.position[2] -= 0.05*self.direction[2]
+            elif (self.pressedKeys[t] == 'Up'):
+                self.position[0] += 0.05*self.direction[0]
+                self.position[2] += 0.05*self.direction[2]
+            elif (self.pressedKeys[t] == 'Right'):
+                self.position[0] += 0.05*(self.direction[0]-1)
+                self.position[2] += 0.05*(self.direction[2]+1)
+            elif (self.pressedKeys[t] == 'Left'):
+                self.position[0] += 0.05*(self.direction[0]-1)
+                self.position[2] += 0.05*(self.direction[2]-1)
 
-        self.basicX= 0
-        self.basicY= 0
+
+
+
 
         pygame.event.clear()
 
