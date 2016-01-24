@@ -18,7 +18,7 @@ class Camera(object):
         self.height = pygame.display.Info().current_h
 
         self.sideSpace = (self.width - self.height) / 2
-        self.lineheight = self.height/self.mapSize
+        self.lineheight = int(self.height/self.mapSize)
         self.linewidth = self.lineheight
 
         self.font = pygame.font.SysFont("monospace", 15)
@@ -35,10 +35,10 @@ class Camera(object):
         self.screen.fill((0,0,0))
 
 
-        self.label = self.font.render(str(self.map.player.directionX), 1, (255,255,0))
+        self.label = self.font.render(str(self.map.player.direction[0]), 1, (255,255,0))
         self.screen.blit(self.label, (0, 0))
 
-        self.label = self.font.render(str(self.map.player.directionY), 1, (255,255,0))
+        self.label = self.font.render(str(self.map.player.direction[2]), 1, (255,255,0))
         self.screen.blit(self.label, (0, 20))
 
 
@@ -47,15 +47,15 @@ class Camera(object):
 
 
 
-        self.playerX = self.map.player.playerX*self.linewidth+self.linewidth/2+self.sideSpace
-        self.playerY = self.map.player.playerY*self.linewidth+self.linewidth/2
+        self.playerX = self.map.player.position[0]*self.linewidth+self.linewidth/2+self.sideSpace
+        self.playerY = self.map.player.position[2]*self.linewidth+self.linewidth/2
 
         for y in range(10):
             for x in range(10):
                 #DrawMap
                 if (self.gamemap[y][x] == 1):
-                    pygame.draw.line(self.screen,self.white,(int(self.sideSpace+x*self.linewidth),int((0.5+y)*self.lineheight)),(int(self.sideSpace+(x+1)*self.linewidth),int((0.5+y)*self.lineheight)),self.lineheight)
-                pygame.draw.circle(self.screen,self.blue,(int(self.playerX),int(self.playerY)),self.linewidth/4,0)
+                    pygame.draw.line(self.screen,self.white,(int(self.sideSpace+x*self.linewidth),int((0.5+y)*self.lineheight)),(int(self.sideSpace+(x+1)*self.linewidth),int((0.5+y)*self.lineheight)),int(self.lineheight))
+                pygame.draw.circle(self.screen,self.blue,(int(self.playerX),int(self.playerY)),int(self.linewidth/4),0)
         self.map.player.listen()
         pygame.display.update()
 

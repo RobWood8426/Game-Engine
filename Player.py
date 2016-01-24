@@ -5,21 +5,13 @@ import math
 
 class PlayerOnMap(object):
     def __init__(self,map,mapsize):
-        pygame.init()
-        self.mouseHyp = 0
-        self.mouseSin = 0
-        self.sin = 1
-        self.cos = 0
-        self.hyp = 0
-        self.directionX = 1
-        self.directionY = 1
-        self.posFound = False
+
         self.basicX = 0
         self.basicY = 0
-        self.angle = 0
-        self.mouseX , self.mouseY = pygame.mouse.get_rel()
-        self.direction = 10
-        self.sensitivity = 1
+        self.posFound = False
+        self.position = [0, 0, 0]
+        self.direction = [1, 0, 0]
+        self.sensitivity = 0.5
 
         while not self.posFound:
             x = random.randint(0,mapsize-1)
@@ -77,39 +69,22 @@ class PlayerOnMap(object):
             elif (self.pressedKeys[t] == 'Left'):
                 self.basicX = self.basicX - 0.05
 
-        # relative movement of the mouse from last call
-        self.mouseX , self.mouseY = pygame.mouse.get_rel()
+        motion = [-self.sensitivity*i for i in pygame.mouse.get_rel()]
+        cos = math.cos(motion[0])
+        sin = math.sin(motion[0])
 
+        x = self.direction[0]*cos + self.direction[2]*sin
+        z = -self.direction[0]*sin + self.direction[2]*cos
 
-        #if there has been mouse movement
+        self.direction[0] = x
+        self.direction[2] = z
 
-        if self.mouseX != 0 :
+        self.position[0] = self.position[0]+ self.basicX
 
-            self.mouseSin = math.sin(self.mouseX)
-            self.directionY = self.directionY + self.mouseSin
-            self.directionX = self.directionX + 1/self.mouseSin
+        self.position[2] = self.position[2]+ self.basicY
 
-        #the length of the hypotenuse of the directional triangle
-        self.hyp = math.sqrt((self.directionX*self.directionX+self.directionY*self.directionY))
-
-
-        if self.hyp != 0 :
-            self.sin = self.directionY/self.hyp
-            self.cos = self.directionX/self.hyp
-
-
-
-        self.direction = self.directionX
-
-        self.playerY = self.playerY + (self.cos * self.basicX) - (self.sin * self.basicY)
-        self.playerX = self.playerX + (self.sin * self.basicX) - (self.cos * self.basicY)
-
-        self.sin = 0
-        self.cos = 0
-        self.basicX = 0
-        self.basicY = 0
-        self.hyp = 0
-
+        self.basicX= 0
+        self.basicY= 0
 
         pygame.event.clear()
 
