@@ -9,4 +9,6 @@ gameClock = Clock()
 while running:
     while not paused:
         gameClock.tick(60)
-        Game.updateScreen()
+        fps = gameClock.get_fps()
+
+        Game.updateScreen(fps)

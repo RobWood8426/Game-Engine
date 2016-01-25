@@ -39,7 +39,7 @@ class Camera(object):
 
         self.screen = pygame.display.set_mode(self.displaySize, pygame.FULLSCREEN)
 
-    def updateScreen(self):
+    def updateScreen(self,fps):
         self.screen.fill((0,0,0))
 
 
@@ -49,7 +49,8 @@ class Camera(object):
         self.label = self.font.render(str(self.map.player.direction[2]), 1, (255,255,0))
         self.screen.blit(self.label, (0, 20))
 
-
+        self.label = self.font.render(str(fps), 1, (255,255,0))
+        self.screen.blit(self.label, (0, 40))
 
 
         self.playerX = self.map.player.position[0]*self.blockHeight+self.blockHeight/2+self.sideSpace
