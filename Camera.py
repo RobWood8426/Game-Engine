@@ -1,5 +1,6 @@
 import pygame
 import Map
+import math
 
 class Camera(object):
 
@@ -63,6 +64,7 @@ class Camera(object):
 
                     pygame.draw.line(self.screen,colour,(int(self.sideSpace+x*self.linewidth),int((0.5+y)*self.lineheight)),(int(self.sideSpace+(x+1)*self.linewidth),int((0.5+y)*self.lineheight)),int(self.lineheight))
                 pygame.draw.circle(self.screen,self.blue,(int(self.playerX),int(self.playerY)),int(self.linewidth/4),0)
+                pygame.draw.line(self.screen,self.white,(int(self.playerX),int(self.playerY)),(int(self.playerX+self.linewidth/4*self.map.player.direction[0]),int(self.playerY+self.linewidth/4*self.map.player.direction[2])),int(math.ceil(self.linewidth/20)))
         self.map.player.listen()
         pygame.display.update()
 
