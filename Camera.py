@@ -23,8 +23,8 @@ class Camera(object):
         self.height = pygame.display.Info().current_h
 
         self.sideSpace = (self.width - self.height) / 2
-        self.lineheight = int(self.height/self.mapSize)
-        self.linewidth = self.lineheight
+        self.blockHeight = int(self.height/self.mapSize)
+
 
         self.font = pygame.font.SysFont("monospace", 15)
 
@@ -50,14 +50,22 @@ class Camera(object):
 
 
 
-        self.playerX = self.map.player.position[0]*self.linewidth+self.linewidth/2+self.sideSpace
-        self.playerY = self.map.player.position[2]*self.linewidth+self.linewidth/2
+        self.playerX = self.map.player.position[0]*self.blockHeight*1.5+self.sideSpace
+        self.playerY = self.map.player.position[2]*self.blockHeight*1.5
 
         for y in range(self.mapSize):
             for x in range(self.mapSize):
-                #DrawMap
+
+
+                playerXPlusDD = self.playerX+self.linewidth*self.drawDistance
+                playerXMinusDD = self.playerX-self.linewidth*self.drawDistance
+                playerZPlusDD = self.playerY+self.linewidth*self.drawDistance
+                playerZMinusDD = self.playerY-self.linewidth*self.drawDistance
+                blockXPos = self.sideSpace+(x+0.5)*self.linewidth
+                blockZPos = (y+0.5)*self.linewidth
+
                 if (self.gamemap[y][x] == 1):
-                    if ((self.sideSpace+(x+0.5)*self.linewidth) < (self.playerX+self.linewidth*self.drawDistance)) and ((self.sideSpace+(x+0.5)*self.linewidth) > (self.playerX-self.linewidth*self.drawDistance)) and (((y+0.5)*self.linewidth) < (self.playerY+self.linewidth*self.drawDistance)) and (((y+0.5)*self.linewidth) > (self.playerY-self.linewidth*self.drawDistance)):
+                    if ( blockXPos < playerXPlusDD) and (blockXPos > playerXMinusDD) and ( blockZPos < playerZPlusDD) and (blockZPos > playerZMinusDD):
                         colour = self.lightblue
                     else :
                         colour = self.white

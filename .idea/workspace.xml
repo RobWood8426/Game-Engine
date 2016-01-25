@@ -36,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Camera.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Camera.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Camera.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="66" column="223" selection-start-line="66" selection-start-column="223" selection-end-line="66" selection-end-column="223" />
+            <state vertical-scroll-proportion="0.61509436">
+              <caret line="67" column="149" selection-start-line="67" selection-start-column="149" selection-end-line="67" selection-end-column="149" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -60,10 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5987421">
+            <state vertical-scroll-proportion="0.0">
               <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -442,7 +442,13 @@
       <option name="project" value="LOCAL" />
       <updated>1453746218967</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Directional Line added&#10;">
+      <created>1453747663134</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1453747663134</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -495,7 +501,8 @@
     <MESSAGE value="Issues" />
     <MESSAGE value="Almost Working" />
     <MESSAGE value="Direction Working and draw distance&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Direction Working and draw distance&#10;" />
+    <MESSAGE value="Directional Line added&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Directional Line added&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -777,16 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="66" column="223" selection-start-line="66" selection-start-column="223" selection-end-line="66" selection-end-column="223" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -799,8 +796,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Player.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5987421">
+        <state vertical-scroll-proportion="0.0">
           <caret line="28" column="43" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Camera.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61509436">
+          <caret line="67" column="149" selection-start-line="67" selection-start-column="149" selection-end-line="67" selection-end-column="149" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
