@@ -9,9 +9,13 @@ class Camera(object):
         pygame.mouse.set_visible(0)
         pygame.event.set_grab(1)
 
-        self.mapSize = 10
+        self.drawDistance = 5
+        self.mapSize = 40
         self.mapDensity = 1
         self.map = Map.Mapping(self.mapSize,self.mapDensity)
+
+
+
         self.gamemap = self.map.gamemap
 
         self.width = pygame.display.Info().current_w
@@ -27,6 +31,7 @@ class Camera(object):
         self.displaySize = [self.width,self.height]
         self.white = [255, 255, 255]
         self.blue = [0, 0, 255]
+        self.lightblue = [0, 0, 100]
 
 
         self.screen = pygame.display.set_mode(self.displaySize, pygame.FULLSCREEN)
@@ -44,17 +49,19 @@ class Camera(object):
 
 
 
-
-
-
         self.playerX = self.map.player.position[0]*self.linewidth+self.linewidth/2+self.sideSpace
         self.playerY = self.map.player.position[2]*self.linewidth+self.linewidth/2
 
-        for y in range(10):
-            for x in range(10):
+        for y in range(self.mapSize):
+            for x in range(self.mapSize):
                 #DrawMap
                 if (self.gamemap[y][x] == 1):
-                    pygame.draw.line(self.screen,self.white,(int(self.sideSpace+x*self.linewidth),int((0.5+y)*self.lineheight)),(int(self.sideSpace+(x+1)*self.linewidth),int((0.5+y)*self.lineheight)),int(self.lineheight))
+                    if ((self.sideSpace+(x+0.5)*self.linewidth) < (self.playerX+self.linewidth*self.drawDistance)) and ((self.sideSpace+(x+0.5)*self.linewidth) > (self.playerX-self.linewidth*self.drawDistance)) and (((y+0.5)*self.linewidth) < (self.playerY+self.linewidth*self.drawDistance)) and (((y+0.5)*self.linewidth) > (self.playerY-self.linewidth*self.drawDistance)):
+                        colour = self.lightblue
+                    else :
+                        colour = self.white
+
+                    pygame.draw.line(self.screen,colour,(int(self.sideSpace+x*self.linewidth),int((0.5+y)*self.lineheight)),(int(self.sideSpace+(x+1)*self.linewidth),int((0.5+y)*self.lineheight)),int(self.lineheight))
                 pygame.draw.circle(self.screen,self.blue,(int(self.playerX),int(self.playerY)),int(self.linewidth/4),0)
         self.map.player.listen()
         pygame.display.update()

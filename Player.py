@@ -13,13 +13,13 @@ class PlayerOnMap(object):
 
         while not self.posFound:
             x = random.randint(0,mapsize-1)
-            y = random.randint(0,mapsize-1)
+            z = random.randint(0,mapsize-1)
             self.moving = False
 
-            if (map[y][x] == 0) :
+            if (map[z][x] == 0) :
                 self.posFound = True
-                self.playerX = x
-                self.playerY = y
+                self.position[0] = x
+                self.position[2] = z
 
         self.pressedKeys = []
         self.remove = ''
@@ -73,11 +73,11 @@ class PlayerOnMap(object):
                 self.position[0] += 0.05*self.direction[0]
                 self.position[2] += 0.05*self.direction[2]
             elif (self.pressedKeys[t] == 'Right'):
-                self.position[0] += 0.05*(self.direction[0]-1)
-                self.position[2] += 0.05*(self.direction[2]+1)
+                self.position[0] += -0.05*(self.direction[2])
+                self.position[2] += 0.05*(self.direction[0])
             elif (self.pressedKeys[t] == 'Left'):
-                self.position[0] += 0.05*(self.direction[0]-1)
-                self.position[2] += 0.05*(self.direction[2]-1)
+                self.position[0] += 0.05*self.direction[2]
+                self.position[2] += -0.05*self.direction[0]
 
 
 
